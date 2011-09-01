@@ -6,27 +6,15 @@ package Source;
  * @author Pingus
  */
 public class ColaArreglos<E> extends AbstractCola<E> {    
-        // --------------------------------------------------
-        // Atributos
-        // --------------------------------------------------
-        
         /** Los elementos contenidos en la cola */
         private Object[] elementos;
         
-        // --------------------------------------------------
-        // Constructor
-        // --------------------------------------------------
-        
         /**
-         * Crea la cola vacía
+         * Crea una cola vacía
          */
         public ColaArreglos(){
                 elementos = new Object[0];
         }
-        
-        // --------------------------------------------------
-        // Métodos
-        // --------------------------------------------------
 
         @Override
         public E dequeue() {
