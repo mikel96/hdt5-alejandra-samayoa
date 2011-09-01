@@ -41,7 +41,7 @@ public class Banco{
                 
                 Scanner scan = new Scanner( System.in );
                 System.out.print( "Presione '1' Modalidad Arreglos\n" +
-                                "Presiones '2'  Modalidad Circular" );
+                                "Presiones '2'  Modalidad Circular\n\n" );
                 String seleccion = scan.nextLine();
                 //int seleccion = scan.nextInt();
                 for( int i = 0; i < NUM_COLAS; i++ ){
@@ -133,7 +133,7 @@ public class Banco{
                         atenderClient(i);
                         sacarClient(i);
                 }
-                System.out.println( "\nPromedio de permanencia: " + PermanenciaTotal / NUM_CLIENTES ); // PROMEDIO 
+                System.out.println( "\nPromedio de permanencia: " + PermanenciaTotal / NUM_CLIENTES +"  Minutos." ); // PROMEDIO 
         }
         
         
