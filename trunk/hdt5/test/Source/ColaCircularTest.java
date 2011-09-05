@@ -53,9 +53,9 @@ public class ColaCircularTest {
     @Test
     public void testEnqueue() {
        ColaCircular colita = new ColaCircular();
-        colita.enqueue(false);
-        colita.enqueue(true);
-        assertEquals(false,colita.dequeue());
+        colita.enqueue(567);
+        colita.enqueue(776);
+        assertEquals(567,colita.dequeue());
     }
 
     /**
