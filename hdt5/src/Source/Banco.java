@@ -46,7 +46,7 @@ public class Banco{
                 //int seleccion = scan.nextInt();
                 for( int i = 0; i < NUM_COLAS; i++ ){
                         if( seleccion.trim().equals("1"))  colas[i] = new ColaArreglos<Client>();
-                     //   else if( seleccion.trim().equals("2") )colas[i] = new ColaCircular<Client>();
+                        else if( seleccion.trim().equals("2") )colas[i] = new ColaCircular<Client>();
                         else { System.out.println( "Número inválido." ); new Banco(); }
                 }
                 
