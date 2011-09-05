@@ -38,7 +38,7 @@ ListaCircular<E> data;
 
     
     public void enqueue(E elemento) {
-       data.addLast(elemento); 
+       data.addFirst(elemento);
     }
 
     
