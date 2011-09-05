@@ -1,6 +1,4 @@
-/*
- * Implementacion de la cola Circular
- */
+
 package Source;
 
 /**
@@ -14,7 +12,7 @@ ListaCircular<E> data;
     public ColaCircular(){
         data = new ListaCircular<E>();
     }
-    public E get()
+        public E get()
     // pre: the queue is not empty
     // post: the element at the head of the queue is returned
     {
@@ -34,21 +32,5 @@ ListaCircular<E> data;
     // post: returns true iff the queue is empty
     {
     return data.isEmpty();
-    }
-
-    
-    public void enqueue(E elemento) {
-       data.addLast(elemento); 
-    }
-
-    
-    public E dequeue() {
-     return data.removeLast(); 
-    }
-
-    
-    public E peek() {
-     return data.getFirst();
-     
     }
 }

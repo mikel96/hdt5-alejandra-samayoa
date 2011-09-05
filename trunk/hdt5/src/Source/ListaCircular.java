@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Implementacion de la Lista Circular
  */
 package Source;
 
@@ -8,145 +7,91 @@ package Source;
  *
  * @author Pingus
  */
+
 public class ListaCircular<E> {
-
         /** Primer nodo de la lista */
-        private Nodo<E> primero;
-        
-      /**Definicion de Clase Auxiliar NODO para poder implentar la Lista 
-         * 
-         * @param <E> Tipo de Elemento/Objeto
-         */  
-        private class Nodo<E> {
-        
-            /** El objeto contenido en el nodo */
-            private E objeto;
-            /** El objeto siguiente */
-            private Nodo<E> siguiente;
-            
-            /**CONSTRUCTOR
-             * 
-             * @param obj el cual consiste el nodo
-             */
-            public Nodo( E obj ){
-                objeto = obj;
-                siguiente = null;
-        }
-            
-            public E darObjeto() {
-                    return objeto;
-            }
+        private Node<E> tail;
+        int count;
 
-            public boolean hasNext() {
-                    return siguiente == null;
-            }
-
-            public Nodo<E> next() {
-                    return siguiente;
-            }
-
-            public void setNext( E next ){
-                    siguiente = new Nodo<E>(next);
-            }
-
-            public void setNext( Nodo<E> next ){
-                    siguiente = next;
-            }
-        }
- 
-
-
-            /**
-             * Inicia la lista vacía
-             */
-            public ListaCircular(){
-                    primero = null;
-            }
-
-            /**
-             * Método que agrega un elemento a la lista
-             */
-            public void add( E nuevo ){
-                     if ( isEmpty() ) {
-                     primero = new Nodo<E>( nuevo );
-                     primero.setNext( primero );
-                  }
-                  else {
-                      Nodo<E> ultimo;
-                      Nodo<E> actual = primero;
-                     while(actual.next() != primero) {
-                            actual = actual.next();
-                     }
-                     ultimo = actual;
-
-                     Nodo<E> desplazado = primero;
-                     primero = new Nodo<E>( nuevo );
-                     primero.setNext( desplazado );
-                     ultimo.setNext( primero );
-                  }
-            }
-        
         /**
-         * Método que remueve el primer nodo de la lista y lo retorna.
-         * @return El primer elemento de la lista. null Si la lista está vacía
+         * Inicia la lista vacía
          */
-        public E remove(){
-                E elementoARemover = null;
-
-              // lanza una excepción si la Lista esta vacía
-              if ( isEmpty() )
-                  return null;
-              // recupera el dato a ser removido
-              elementoARemover = primero.darObjeto();  
-
-              // reinicializa las referencias al primerNodo and ultimoNodo
-              if ( primero == primero.next())
-                 primero = null;
-
-              else
-              {
-                  Nodo<E> ultimo;
-                  Nodo<E> actual = primero;
-                 while(actual.next() != primero ) {
-                        actual = actual.next();
-                 }
-                 ultimo = actual;
-                                
-                 primero = primero.next();
-                 ultimo.setNext( primero );
-              }
-                return elementoARemover;  
-        }
-        
-        /**
-         * Método que indica si la lista está vacía.
-         * @return true Si no hay elementos en la lista. false Si no los hay.
-         */
-        public boolean isEmpty(){
-                return primero == null;
-        }
-        
-        /**
-         * Método que informa sobre el tamaño de la lista
-         */
-        public int size(){
-                if( isEmpty() )
-                        return 0;
-                else{
-                        int tamanio = 0;
-                        for( Nodo<E> actual = primero; actual.hasNext(); actual.next() )
-                                tamanio++;
-                        return tamanio;
-                }
-        }
-        
+public ListaCircular()
+// pre: constructs a new circular list
+    {
+        tail = null;
+        count = 0;
+   }    
         /**
          * Método que retorna el primer elemento de la lista
          */
-        public E darPrimero(){
-                if( primero != null )
-                        return primero.darObjeto();
-                else
-                        return null;
+        public void addFirst(E value)
+        // pre: value non-null
+        // post: adds element to head of list
+        {Node<E> temp = new Node<E>(value);
+        if (tail == null) { // first value added
+        tail = temp;
+        tail.setNext(tail);
+        } else { // element exists in list
+        temp.setNext(tail.next());
+        tail.setNext(temp);
         }
+        count++;
+        }
+        
+        public void addLast(E value)
+        // pre: value non-null
+        // post: adds element to tail of list
+        {
+        // new entry:
+        addFirst(value);
+        tail = tail.next();
+        }
+        
+        public int size()
+        // post: returns number of elements in list
+        {
+        return count;
+        }
+
+        public E getFirst()
+        // pre: list is not empty
+        // post: returns first value in list
+        {
+        return tail.value();
+        }
+        
+        public void clear()
+        // post: removes all elements from list
+        {
+        tail = null;
+        count = 0;
+        }
+        
+        public boolean isEmpty(){
+            return count==0;
+        }
+                
+        
+        public E removeLast()
+        // pre: !isEmpty()
+        // post: returns and removes value from tail of list
+        {
+        //Assert.pre(!isEmpty(),"list is not empty.");
+        Node<E> finger = tail;
+        while (finger.next() != tail) {
+        finger = finger.next();
+        }
+        // finger now points to second-to-last value
+        Node<E> temp = tail;
+        if (finger == tail)
+        {
+        tail = null;
+        } else {
+        finger.setNext(tail.next());
+        tail = finger;
+        }
+        count--;
+         return temp.value();
+    }
 }

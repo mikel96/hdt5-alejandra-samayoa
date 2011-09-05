@@ -41,6 +41,10 @@ public class ColaCircularTest {
      */
     @Test
     public void testSize() {
+        ColaCircular colita = new ColaCircular();
+        colita.enqueue("Estreno");
+        colita.enqueue("DelMes");
+        assertEquals(2,colita.size());
     }
 
     /**
@@ -48,6 +52,10 @@ public class ColaCircularTest {
      */
     @Test
     public void testEnqueue() {
+       ColaCircular colita = new ColaCircular();
+        colita.enqueue(false);
+        colita.enqueue(true);
+        assertEquals(false,colita.dequeue());
     }
 
     /**
@@ -55,6 +63,10 @@ public class ColaCircularTest {
      */
     @Test
     public void testDequeue() {
+        ColaCircular colita = new ColaCircular();
+        colita.enqueue(569);
+        colita.enqueue(343);
+        assertEquals(569,colita.dequeue());
     }
 
     /**
@@ -62,5 +74,9 @@ public class ColaCircularTest {
      */
     @Test
     public void testPeek() {
+        ColaCircular colita = new ColaCircular();
+        colita.enqueue("Estreno");
+        colita.enqueue("DelMes");
+        assertEquals("Estreno",colita.peek());
     }
 }

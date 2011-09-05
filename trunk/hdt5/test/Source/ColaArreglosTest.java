@@ -41,6 +41,10 @@ public class ColaArreglosTest {
      */
     @Test
     public void testDequeue() {
+        ColaArreglos colita = new ColaArreglos();
+        colita.enqueue(5);
+        colita.enqueue(3);
+        assertEquals(5,colita.dequeue());
     }
 
     /**
@@ -48,6 +52,10 @@ public class ColaArreglosTest {
      */
     @Test
     public void testEnqueue() {
+        ColaArreglos colita = new ColaArreglos();
+        colita.enqueue("Estreno");
+        colita.enqueue("DelMes");
+        assertEquals("Estreno",colita.dequeue());
     }
 
     /**
@@ -55,6 +63,11 @@ public class ColaArreglosTest {
      */
     @Test
     public void testPeek() {
+        ColaArreglos colita = new ColaArreglos();
+        colita.enqueue(true);
+        colita.enqueue(false);
+        assertEquals(true,colita.peek());
+        
     }
 
     /**
@@ -62,5 +75,9 @@ public class ColaArreglosTest {
      */
     @Test
     public void testSize() {
+        ColaArreglos colita = new ColaArreglos();
+        colita.enqueue("Estreno");
+        colita.enqueue("DelMes");
+        assertEquals(2,colita.size());
     }
 }

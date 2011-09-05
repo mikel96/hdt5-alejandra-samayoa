@@ -82,7 +82,7 @@ public class Client implements Comparable<Client>{
                 return atentdidoalas + tiempoEstadia;
         }
         
-        @Override
+ 
         public int compareTo(Client otro) {
                 if( horaEntrada < otro.horaEntrada ) return -1;
                 else if( horaEntrada == otro.horaEntrada ) return 0;
