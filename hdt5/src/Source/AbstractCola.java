@@ -4,8 +4,9 @@
 package Source;
 
 /**
- *
- * @author Alejandra Samayoa
+ * Clase abstracta de cola
+ * @author Pingus
+ * @param <E> 
  */
 public abstract class AbstractCola<E> implements Cola<E> {
         

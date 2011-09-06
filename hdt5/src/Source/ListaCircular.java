@@ -3,11 +3,12 @@
  */
 package Source;
 
-/**
- *
- * @author Pingus
- */
 
+/**
+ * Implementacion de la lista circular
+ * @author Pingus
+ * @param <E> elemento
+ */
 public class ListaCircular<E> {
         /** Primer nodo de la lista */
         private Node<E> tail;
@@ -22,9 +23,10 @@ public ListaCircular()
         tail = null;
         count = 0;
    }    
-        /**
-         * Método que retorna el primer elemento de la lista
-         */
+/**
+ * Metodo que agrega un elemento al inicio
+ * @param value elemento 
+ */
         public void addFirst(E value)
         // pre: value non-null
         // post: adds element to head of list
@@ -39,6 +41,10 @@ public ListaCircular()
         count++;
         }
         
+ /** Metodo que agrega un elemento al final
+         * 
+         * @param value elemento
+         */   
         public void addLast(E value)
         // pre: value non-null
         // post: adds element to tail of list
@@ -48,31 +54,46 @@ public ListaCircular()
         tail = tail.next();
         }
         
+       /**
+         * devuelve el tamaÑo de la lista
+         * @return size
+         */
         public int size()
         // post: returns number of elements in list
         {
         return count;
         }
-
+        /**
+         * deevuelve el primer elemento en la lista
+         * @return elemento primero
+         */
         public E getFirst()
         // pre: list is not empty
         // post: returns first value in list
         {
         return tail.value();
         }
-        
+        /**
+         * borra la lista
+         */
         public void clear()
         // post: removes all elements from list
         {
         tail = null;
         count = 0;
         }
-        
+        /**
+         * verifica que la lista este vacia
+         * @return devuelve true si esta vacia o false si hay elementos
+         */
         public boolean isEmpty(){
             return count==0;
         }
                 
-        
+        /**
+         * remueve el ultimo elemento de la lista
+         * @return elemento
+         */
         public E removeLast()
         // pre: !isEmpty()
         // post: returns and removes value from tail of list
