@@ -2,8 +2,9 @@
 package Source;
 
 /**
- *
+ * Cola realizada con Arreglos
  * @author Pingus
+ * @param <E> Elemento
  */
 public class ColaArreglos<E> extends AbstractCola<E> {    
         /** Los elementos contenidos en la cola */

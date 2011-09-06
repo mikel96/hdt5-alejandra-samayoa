@@ -30,6 +30,7 @@ public class Client implements Comparable<Client>{
          * Crea una instancia del cliente
          * @param t1 La hora de entrada del cliente al banco en minutos desde la apertura del banco.
          * @param t2 Tiempo que le tomará al cliente hacer su mandado (en minutos).
+         * @param ide identificador del cliente
          * pre: t1 debe ser un número entre 1 y 480. t2 debe ser un número entre 1 y 30.
          */
         public Client(int ide, int t1, int t2 ){
@@ -82,18 +83,28 @@ public class Client implements Comparable<Client>{
                 return atentdidoalas + tiempoEstadia;
         }
         
- 
+ /**
+         * compara al cliente con otro
+         * @param otro
+         * @return devuelve -1 si es menor, 0 si es igual y 1 si es mayor
+         */
         public int compareTo(Client otro) {
                 if( horaEntrada < otro.horaEntrada ) return -1;
                 else if( horaEntrada == otro.horaEntrada ) return 0;
                 else return 1;
         }
-        
+        /**
+         * regresa el string de los datos del cliente
+         * @return 
+         */
         public String toString()
         {
                 return "\n\tHora de Ingreso: " + horaEntrada + "\n\tDuración de transacción: " + tiempoEstadia;
         }
-        
+        /**
+         * Devuelve el ID del Cliente
+         * @return Identificador
+         */
         public int getID(){
                 return id;
         }

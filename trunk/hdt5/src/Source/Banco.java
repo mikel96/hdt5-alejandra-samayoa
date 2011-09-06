@@ -151,7 +151,10 @@ public class Banco{
                         if( menor > colas[i].size() ) menor = colas[i].size();
                 return menor;
         }
-
+/**
+         * procedimiento principal
+         * @param args 
+         */
         public static void main( String[] args ){
                 new Banco();
         }
