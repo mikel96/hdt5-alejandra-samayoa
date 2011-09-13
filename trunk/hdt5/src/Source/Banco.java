@@ -1,7 +1,10 @@
 package Source;
 
 
+import Source.Client;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -26,8 +29,8 @@ public class Banco{
         /** Cantidad de clientes que se generarán para el ejercicio */
         public final static int NUM_CLIENTES = 50;
 
-        /** Las colas de atención en el banco. */
-        private Cola<Client>[] colas;
+        /** Las colas de atención en el banco. USO DE JCF */
+        private Queue<Client>[] colas;
         /** La lista generada de clientes. */
         private Lista<Client> listaClientes;
         private int PermanenciaTotal;
@@ -37,16 +40,17 @@ public class Banco{
          * post: Se creó una instancia del banco con 4 colas de atención a clientes y se generó la lista aleatoria de clientes.
          */
         public Banco()
-        {colas = new Cola[NUM_COLAS];
+        {colas = new Queue[NUM_COLAS];
                 
                 Scanner scan = new Scanner( System.in );
                 System.out.print( "Presione '1' Modalidad Arreglos\n" +
                                 "Presiones '2'  Modalidad Circular\n\n" );
                 String seleccion = scan.nextLine();
+                //String seleccion = "2";
                 //int seleccion = scan.nextInt();
                 for( int i = 0; i < NUM_COLAS; i++ ){
-                        if( seleccion.trim().equals("1"))  colas[i] = new ColaArreglos<Client>();
-                        else if( seleccion.trim().equals("2") )colas[i] = new ColaCircular<Client>();
+                        if( seleccion.trim().equals("1"))  colas[i] = new LinkedList<Client>();
+                        else if( seleccion.trim().equals("2") )colas[i] = new LinkedList<Client>();
                         else { System.out.println( "Número inválido." ); new Banco(); }
                 }
                 
@@ -83,17 +87,17 @@ public class Banco{
         private void sacarClient( int hora )
         {
                 for( int i = 0; i < colas.length; i++ ){
-                        Cola<Client> cola = colas[i];
+                        Queue<Client> cola = colas[i];
                         if( ! cola.isEmpty() ){
                                 if( cola.peek().getHoraSalida() == hora ){
-                                        Client saliendo = cola.dequeue();
+                                        Client saliendo = cola.remove();
                                         PermanenciaTotal += saliendo.getHoraSalida() - saliendo.getHoraEntrada();
                                         System.out.println( hora + ":\n\tSe termino de atender al cliente " + saliendo.getID() + " en la cola " + (i+1) + ".\n\tSu Estadia fue de " + (saliendo.getHoraSalida() - saliendo.getHoraEntrada()) );
                                 } else{}
                         } else{}
                 }
                 for( int i = 0; i < colas.length; i++ ){
-                        Cola<Client> cola = colas[i];
+                        Queue<Client> cola = colas[i];
                         if( ! cola.isEmpty() ){
                                 if( cola.peek().getHoraAtendido() == 0 ){
                                         cola.peek().setHoraAtendido( hora );
@@ -112,12 +116,12 @@ public class Banco{
                 for( int i = 0; i <NUM_CLIENTES; i++ ){
                         if( listaClientes.get(i).getHoraEntrada() == hora ){
                                 int colaMasCorta = darColaMasCorta();
-                                colas[colaMasCorta].enqueue( listaClientes.get(i) );
+                                colas[colaMasCorta].add( listaClientes.get(i) );
                                 System.out.println( hora + ":\n\tEl cliente " + (i+1) + " ha ingresado a la cola " + (colaMasCorta+1) );
                         }
                 }
                 for( int i = 0; i < colas.length; i++ ){
-                        Cola<Client> cola = colas[i];
+                        Queue<Client> cola = colas[i];
                         if( ! cola.isEmpty() )
                         if( cola.peek().getHoraAtendido() == 0 ){
                                 cola.peek().setHoraAtendido( hora );
